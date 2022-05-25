@@ -1,1 +1,0 @@
-const API_KEY = '81adf7765ac2394c7c42d8cd701292a6';

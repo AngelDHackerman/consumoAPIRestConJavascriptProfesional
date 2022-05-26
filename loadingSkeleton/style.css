@@ -204,12 +204,22 @@ button {
   background-color: #EFFFFD;
 }
 
+
 .trendingPreview-movieList__skeleton--div { 
+  background-color: var(--purple-light-2);
+  border-radius: 8px ;
+  height: 225px;
+  min-height: 225px;
+  max-height: 255px;
   width: 150px;
-  height: 200px;
-  border: 2px solid #E8F9FD;
-  background-color: #E8F9FD;
-  border-radius: 40px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+#second { 
+  animation-delay: .2s;
 }
 
 /* Footer */
@@ -227,4 +237,15 @@ footer {
 /* Navigation */
 .inactive {
   display: none;
+}
+
+/* Animations */
+
+@keyframes loading-skeleton { 
+  0%, 100% { 
+    opacity: 100%;
+  }
+  50% { 
+    opacity: 0%;
+  }
 }

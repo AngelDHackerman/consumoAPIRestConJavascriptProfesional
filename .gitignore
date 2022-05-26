@@ -216,7 +216,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node
+
+
+
+
 # API Key of the MovieDB Secrets.js (API Key) 
 src/secrets.js
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node

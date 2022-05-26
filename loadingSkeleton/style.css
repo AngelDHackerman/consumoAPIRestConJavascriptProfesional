@@ -1,0 +1,230 @@
+/* General */
+* { box-sizing: border-box; }
+
+:root {
+  --purple-light-1: #FBFAFB;
+  --purple-light-2: #EEEAF2;
+  --purple-medium-1: #AA83C8;
+  --purple-medium-2: #8B48BF;
+  --purple-medium-3: #5C218A;
+  --purple-dark-1: #3E0F64;
+  --purple-dark-2: #2A0646;
+
+  --yellow: #EECC75;
+  --green: #CAD297;
+  --aqua: #B7EAC5;
+  --lightBlue: #A2EEE5;
+  --darkBlue: #8EA2EA;
+  --red: #F09D9D;
+
+  --font-family-titles: 'Dosis', sans-serif;
+  --font-family-text: 'Red Hat Display', sans-serif;
+  --font-weight-title1: 800;
+  --font-weight-title2: 700;
+  --font-weight-text1: 400;
+  --font-weight-text2: 500;
+}
+
+html {
+  background-color: var(--purple-medium-3);
+}
+
+body {
+  background-color: var(--purple-light-1);
+  color: var(--purple-dark-2);
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text1);
+  font-size: 16px;
+  margin: 4px 0 0 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-size: 24px;
+  color: var(--purple-dark-2);
+  font-family: var(--font-family-titles);
+  font-weight: var(--font-weight-title1);
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 18px;
+  color: var(--purple-dark-1);
+  font-weight: var(--font-weight-title2);
+}
+
+h3 {
+  color: var(--purple-dark-2);
+  font-weight: var(--font-weight-text2);
+  font-size: 16px;
+}
+
+input {
+  background-color: var(--purple-light-2);
+  color: var(--purple-medium-2);
+  border: none;
+  font-size: 18px;
+  padding-left: 16px;
+}
+
+input::placeholder {
+  color: var(--purple-medium-1);
+  font-family: var(--font-family-text);
+}
+
+button {
+  background-color: var(--purple-dark-1);
+  border: none;
+  color: var(--purple-light-2);
+  font-weight: var(--font-weight-text2);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+/* Shared */
+.header-container, .trendingPreview-header, .categoriesPreview-container {
+  padding: 0 24px;
+}
+
+.trendingPreview-container, .categoriesPreview-container, footer {
+  margin-top: 48px;
+}
+
+.trendingPreview-header, .categoriesPreview-title {
+  margin-bottom: 24px;
+}
+
+.movie-container {
+  cursor: pointer;
+}
+
+.movie-img {
+  border-radius: 8px;
+}
+
+.categoriesPreview-list, .categories-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+
+/* Header */
+.header-container {
+  padding-top: 40px;
+}
+
+.header-container--long {
+  background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+  background-size: cover !important;
+  height: 480px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header-container--categoryView {
+  background: linear-gradient(180deg, rgba(238, 204, 117, 0.5) 0%, rgba(238, 204, 117, 0) 72.92%);
+} 
+
+.header-title {
+  margin-bottom: 16px;
+}
+
+.header-arrow {
+  font-weight: var(--font-weight-text2);
+  font-size: 36px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+.header-arrow--white {
+  color: var(--purple-light-1);
+}
+
+.header-searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.header-searchForm input {
+  height: 48px;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.header-searchForm button {
+  width: 56px;
+  height: 48px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+
+/* Trending */
+.trendingPreview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trendingPreview-btn {
+  border-radius: 8px;
+  height: 32px;
+  width: 72px;
+}
+
+.trendingPreview-movieList {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 241px;
+  padding-left: 24px;
+  padding-bottom: 16px;
+}
+
+/* Banner movies skeleton div */
+
+.trendingPreview-movieList__skeleton { 
+  display: flex;
+  justify-content: space-around;
+  background-color: #EFFFFD;
+}
+
+.trendingPreview-movieList__skeleton--div { 
+  width: 150px;
+  height: 200px;
+  border: 2px solid #E8F9FD;
+  background-color: #E8F9FD;
+  border-radius: 40px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--purple-medium-3);
+  color: var(--purple-light-2);
+  text-align: center;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Navigation */
+.inactive {
+  display: none;
+}

@@ -107,6 +107,7 @@ button {
 
 .movie-img {
   border-radius: 8px;
+  min-height: 200px;
 }
 
 .categoriesPreview-list, .categories-list {

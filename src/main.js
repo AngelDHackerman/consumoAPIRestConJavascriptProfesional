@@ -37,6 +37,14 @@ function createMovies(movies, container, lazyLoad = false) {
       lazyLoad ? 'data-img' : 'src',
       'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
+    movieImg.addEventListener('error', () => { 
+      movieImg.setAttribute(
+        'src',
+        'https://http.cat/203.jpg'
+      )
+    })
+
+      // ? Llamando al lazyLoader
 
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
@@ -93,7 +101,7 @@ async function getMoviesByCategory(id) {
   });
   const movies = data.results;
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, true);
 }
 
 async function getMoviesBySearch(query) {

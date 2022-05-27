@@ -11,6 +11,7 @@ const api = axios.create({
 
 // Utils
 
+  // todo: Agregando el lazyLoader, para mostrar solo las imagenes en el viewport. 
 const lazyLoader = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

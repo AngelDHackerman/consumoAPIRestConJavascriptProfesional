@@ -140,6 +140,18 @@ async function getTrendingMovies() {
 let page = 1; 
 
 const getPaginatedTrendingMovies = async () => { 
+  // * El scrollTop, scrollHeight, clientHeight miden los eventos de scroll de la pantalla que esta viendo la app
+  // const {} = [] ----> eso es una destructuracion. 
+  const { 
+    scrollTop,
+    scrollHeight,
+    clientHeight,
+  } = document.documentElement;
+
+  // - 15 , es por si el usuario no ha llegado hasta el fondo y alli le da un margen de error. 
+  const scrollIsBotton = (scrollTop, + clientHeight ) >= (scrollHeight - 15);
+
+
   page++; 
   const { data } = await api('trending/movie/day', { 
     params: { 

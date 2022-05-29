@@ -11,7 +11,6 @@ const api = axios.create({
 
 // Utils
 
-  // todo: Agregando el lazyLoader, para mostrar solo las imagenes en el viewport. 
 const lazyLoader = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -22,14 +21,14 @@ const lazyLoader = new IntersectionObserver((entries) => {
 });
 
 function createMovies(
-  movies, 
-  container, 
+  movies,
+  container,
   {
-    lazyLoad = false, 
-    clean = true
-  } = {}) {         // # = {}, es por si NO mandamos parametros o por si solo mandamos 1 parametro en el objeto
-
-  if (clean) { 
+    lazyLoad = false,
+    clean = true,
+  } = {},
+) {
+  if (clean) {
     container.innerHTML = '';
   }
 
@@ -47,14 +46,12 @@ function createMovies(
       lazyLoad ? 'data-img' : 'src',
       'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
-    movieImg.addEventListener('error', () => { 
+    movieImg.addEventListener('error', () => {
       movieImg.setAttribute(
         'src',
-        'https://http.cat/203.jpg'
-      )
+        'https://static.platzi.com/static/images/error/img404.png',
+      );
     })
-
-      // ? Llamando al lazyLoader
 
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
@@ -129,46 +126,43 @@ async function getTrendingMovies() {
   const { data } = await api('trending/movie/day');
   const movies = data.results;
 
-  createMovies(movies, genericSection, { lazyLoad: true, clean: false});
+  createMovies(movies, genericSection, { lazyLoad: true, clean: true });
 
-  const btnLoadMore = document.createElement('button'); 
-  btnLoadMore.innerHTML = 'Cargar Mas'; 
-  btnLoadMore.addEventListener('click', getPaginatedTrendingMovies); 
-  genericSection.appendChild(btnLoadMore)
+  // const btnLoadMore = document.createElement('button');
+  // btnLoadMore.innerText = 'Cargar más';
+  // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
+  // genericSection.appendChild(btnLoadMore);
 }
 
-let page = 1; 
-
-const getPaginatedTrendingMovies = async () => { 
-  // * El scrollTop, scrollHeight, clientHeight miden los eventos de scroll de la pantalla que esta viendo la app
-  // const {} = [] ----> eso es una destructuracion. 
-  const { 
+async function getPaginatedTrendingMovies() {
+  const {
     scrollTop,
     scrollHeight,
-    clientHeight,
+    clientHeight
   } = document.documentElement;
-
-  // - 15 , es por si el usuario no ha llegado hasta el fondo y alli le da un margen de error. 
-  const scrollIsBotton = (scrollTop, + clientHeight ) >= (scrollHeight - 15);
-
-
-  page++; 
-  const { data } = await api('trending/movie/day', { 
-    params: { 
-      page: page, 
-    }, 
-  });
-  const movies = data.results;
-
-  createMovies(
-    movies, 
-    genericSection, 
-    { lazyLoad: true, clean: false }); 
   
-  const btnLoadMore = document.createElement('button'); 
-  btnLoadMore.innerText = 'Cargar mas';
-  btnLoadMore.addEventListener('click', getPaginatedTrendingMovies); 
-  genericSection.appendChild(btnLoadMore); 
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+
+  if (scrollIsBottom) {
+    page++;
+    const { data } = await api('trending/movie/day', {
+      params: {
+        page,
+      },
+    });
+    const movies = data.results;
+
+    createMovies(
+      movies,
+      genericSection,
+      { lazyLoad: true, clean: false },
+    );
+  }
+
+  // const btnLoadMore = document.createElement('button');
+  // btnLoadMore.innerText = 'Cargar más';
+  // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
+  // genericSection.appendChild(btnLoadMore);
 }
 
 async function getMovieById(id) {
